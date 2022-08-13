@@ -9,9 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.observeOn
-import tk.kvakva.collectgpspoints.GeoPoint
 import tk.kvakva.collectgpspoints.databinding.FragmentSlideshowBinding
 
 class SlideshowFragment : Fragment() {
