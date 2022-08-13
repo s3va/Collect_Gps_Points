@@ -37,7 +37,7 @@ class SlideshowFragment : Fragment() {
         slideshowViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-        var adapter = PointsListRecViewAdapt(slideshowViewModel.listGeoPointsFromRep.value?.toTypedArray()?: arrayOf())
+        val adapter = PointsListRecViewAdapt(slideshowViewModel.listGeoPointsFromRep.value?.toTypedArray()?: arrayOf())
         binding.pointsRecView.adapter = adapter
 //            PointsListRecViewAdapt(
 //            arrayOf(
