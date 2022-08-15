@@ -112,7 +112,13 @@ class YaMapFragment : Fragment() {
 //                }
 //            )
         }
-
+//        TODO: place it in onClick()
+//        MapKitFactory.getInstance().createUserLocationLayer(binding.mapview.mapWindow).apply {
+//
+//            isVisible=true
+//            isHeadingEnabled=true
+//
+//        }
 
 //        lifecycleScope.launch(Dispatchers.IO) {
 //            GeoPointRoomDatabase.getDatabase(requireContext().applicationContext).geoPointDao()
@@ -175,9 +181,9 @@ class YaMapFragment : Fragment() {
             polylineMapObject?.strokeWidth = 1f
             polylineMapObject?.dashLength = 8f
             polylineMapObject?.gapLength = 4f
-            polylineMapObject?.addTapListener { mapObject, point ->
-                true
-            }
+//            polylineMapObject?.addTapListener { mapObject, point ->
+//                true
+//            }
 
 
             //    )
