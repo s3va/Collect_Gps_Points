@@ -18,7 +18,8 @@ data class GeoPoint(
     val gpsDateTime: String? = null,
     val accuracy: Float? = null,
     val speed: Float? = null,
-    val speedAccuracy: Float? = null
+    val speedAccuracy: Float? = null,
+    val provider: String? = null,
 )
 
 @Dao
@@ -67,7 +68,7 @@ interface GeoPointDao {
 
 @Database(
     entities = [GeoPoint::class],
-    version = 11,
+    version = 12,
     autoMigrations = [
         AutoMigration(
             from = 8,
@@ -81,6 +82,10 @@ interface GeoPointDao {
         AutoMigration (
             from = 10,
             to = 11
+        ),
+        AutoMigration (
+            from = 11,
+            to = 12
         ),
     ],
     exportSchema = true

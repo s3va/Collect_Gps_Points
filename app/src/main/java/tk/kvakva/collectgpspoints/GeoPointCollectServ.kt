@@ -98,6 +98,7 @@ class GeoPointCollectServ : Service() {
                         it.speedAccuracyMetersPerSecond
                     else
                         null,
+                    provider = it.provider,
 
                     )
             )
@@ -109,24 +110,29 @@ class GeoPointCollectServ : Service() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     setTextViewText(
                         R.id.appwidget_text,
-                        """latitude: ${it.latitude} longitude: ${it.longitude}
+                        """latitude: ${it.latitude}
+                           |longitude: ${it.longitude}
                            |time : ${
                             LocalDateTime
                                 .ofInstant(Instant.ofEpochMilli(it.time), ZoneOffset.UTC)
                                 .format(DateTimeFormatter.ofPattern(DATETIME_FORMAT))
-                        } accuracy: ${it.accuracy}
-                           |speed: ${it.speed} speedAccuracy: ${it.speedAccuracyMetersPerSecond}""".trimMargin()
+                           } accuracy: ${it.accuracy}
+                           |speed: ${it.speed}
+                           |speedAccuracy: ${it.speedAccuracyMetersPerSecond}
+                           |provider: ${it.provider}""".trimMargin()
                     )
                 } else {
                     setTextViewText(
                         R.id.appwidget_text,
-                        """latitude: ${it.latitude} longitude: ${it.longitude}
+                        """latitude: ${it.latitude}
+                           |longitude: ${it.longitude}
                            |time : ${
                             LocalDateTime
                                 .ofInstant(Instant.ofEpochMilli(it.time), ZoneOffset.UTC)
                                 .format(DateTimeFormatter.ofPattern(DATETIME_FORMAT))
-                        } accuracy: ${it.accuracy}
-                           |speed: ${it.speed}""".trimMargin()
+                           } accuracy: ${it.accuracy}
+                           |speed: ${it.speed}
+                           |pr:${it.provider}""".trimMargin()
                     )
                 }
             }
@@ -219,10 +225,26 @@ class GeoPointCollectServ : Service() {
         //locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER,locationListener, Looper.getMainLooper())
         locationManager.requestLocationUpdates(
             LocationManager.GPS_PROVIDER,
-            5000,
-            5f,
+            60000,
+            20f,
             locationListener
         )
+
+        locationManager.requestLocationUpdates(
+            LocationManager.NETWORK_PROVIDER,
+            60000,
+            20f,
+            locationListener
+        )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            locationManager.requestLocationUpdates(
+                LocationManager.FUSED_PROVIDER,
+                60000,
+                20f,
+                locationListener
+            )
+        }
 
         //locationManager.getCurrentLocation()
 

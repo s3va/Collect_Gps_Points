@@ -101,4 +101,14 @@
         app:layout_constraintTop_toBottomOf="@+id/dateTimeTv"
         tools:text="1.5" />
 
+    <TextView
+        android:id="@+id/providerTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="provider"
+        app:layout_constraintEnd_toStartOf="@+id/SavedToServercheckBox"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

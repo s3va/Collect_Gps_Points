@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 11,
-    "identityHash": "ca986ed308c997a1e1ddb435de4ea1e4",
+    "version": 12,
+    "identityHash": "7cb2abd11e1d87638e568963556a9884",
     "entities": [
       {
         "tableName": "GeoPoint",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `smartDateTime` TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, `lat` REAL NOT NULL, `lon` REAL NOT NULL, `uploaded` INTEGER NOT NULL, `user` TEXT, `gpsDateTime` TEXT, `accuracy` REAL, `speed` REAL, `speedAccuracy` REAL )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `smartDateTime` TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, `lat` REAL NOT NULL, `lon` REAL NOT NULL, `uploaded` INTEGER NOT NULL, `user` TEXT, `gpsDateTime` TEXT, `accuracy` REAL, `speed` REAL, `speedAccuracy` REAL, `provider` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -68,6 +68,12 @@
             "columnName": "speedAccuracy",
             "affinity": "REAL",
             "notNull": false
+          },
+          {
+            "fieldPath": "provider",
+            "columnName": "provider",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -83,7 +89,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ca986ed308c997a1e1ddb435de4ea1e4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7cb2abd11e1d87638e568963556a9884')"
     ]
   }
 }

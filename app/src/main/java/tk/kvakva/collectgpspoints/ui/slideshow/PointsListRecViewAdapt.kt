@@ -112,6 +112,8 @@ class PointsListRecViewAdapt(var dataSet: Array<GeoPoint>) :
             dataSet[position].speed.toString()
         holder.constraintLayout.findViewById<TextView>(R.id.speedAccuracyTv).text = "spd acu:\n" +
             dataSet[position].speedAccuracy.toString()
+        holder.constraintLayout.findViewById<TextView>(R.id.providerTv).text =
+            dataSet[position].provider.toString()
     }
 
 

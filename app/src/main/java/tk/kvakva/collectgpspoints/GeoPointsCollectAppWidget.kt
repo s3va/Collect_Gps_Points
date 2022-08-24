@@ -53,12 +53,15 @@ internal fun updateAppWidget(
     //val widgetText = context.getString(R.string.appwidget_text)
 //    val geoPointRepository = GeoPointRepository(GeoPointRoomDatabase.getDatabase(context).geoPointDao())
 //    val lp: GeoPoint? = geoPointRepository.allGeoPointEntries.asLiveData().value?.last()
-    coroutineScopeApWi.launch {
+    coroutineScopeApWi.launch(Dispatchers.IO) {
         val lp: GeoPoint = GeoPointRoomDatabase.getDatabase(context).geoPointDao().getAll().last()
         val str =
-            """latitude: ${lp.lat} longitude: ${lp.lon}
-          |time : ${lp.gpsDateTime} accuracy: ${lp.accuracy}
-          |speed: ${lp.speed} speedAccuracy: ${lp.speedAccuracy}""".trimMargin()
+            """latitude: ${lp.lat}
+               |longitude: ${lp.lon}
+               |time : ${lp.gpsDateTime} accuracy: ${lp.accuracy}
+               |speed: ${lp.speed}
+               |speedAccuracy: ${lp.speedAccuracy}
+               |provider: ${lp.provider}""".trimMargin()
         Log.e(TAG, "updateAppWidget: $str")
         // Construct the RemoteViews object
         val views = RemoteViews(context.packageName, R.layout.geo_points_collect_app_widget)
